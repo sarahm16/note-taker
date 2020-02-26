@@ -20,10 +20,17 @@ app.get('/notes', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/notes.html'))
 })
 
+//reads db.json, returns notes
 app.get('/api/notes', function(req, res) {
     fs.readFile('db/db.json',  'utf8', function(err, data) {
         return data;
     })
+})
+
+//receives new note
+app.post('/api/notes', function(req, res) {
+    let note = req.body;
+
 })
 
 
