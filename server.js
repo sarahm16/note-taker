@@ -52,12 +52,13 @@ app.post('/api/notes', function(req, res) {
     fs.writeFile('db/db.json', JSON.stringify(notes), function(err) {
         if(err) throw err;
     })
-    res.json(notes);
+    res.json(note);
 })
 
 //find note by id and delete
 app.delete('/api/notes/:id', function(req, res) {
-    //req.params.id;
+    notes.splice(req.params.id, 1);
+    console.log(notes);
 })
 
 //port that server will be listening on
