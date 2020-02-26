@@ -56,12 +56,6 @@ var handleNoteSave = function() {
     text: $noteText.val()
   };
 
-  //console.log(newNote);
-  // fs.appendFile('db.json', newNote, function(err) {
-  //   if(err) throw err;
-  //   console.log('saved')
-  // })
-
   saveNote(newNote).then(function(data) {
     getAndRenderNotes();
     renderActiveNote();
