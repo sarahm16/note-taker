@@ -58,7 +58,7 @@ app.post('/api/notes', function(req, res) {
 //find note by id and delete
 app.delete('/api/notes/:id', function(req, res) {
     notes.splice(req.params.id, 1);
-    console.log(notes);
+    res.json(notes);
 })
 
 //port that server will be listening on
