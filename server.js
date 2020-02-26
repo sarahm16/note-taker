@@ -38,7 +38,7 @@ app.post('/api/notes', function(req, res) {
     let note = req.body;
     note.id = n;
     console.log(note);
-    fs.appendFile('db/db.json', note, function(err) {
+    fs.appendFile('db/db.json', JSON.stringify(note), function(err) {
         if(err) throw err;
     })
     res.send({ note });
