@@ -29,8 +29,11 @@ app.get('/api/notes', function(req, res) {
 
 //receives new note
 app.post('/api/notes', function(req, res) {
-    let note = req.body;
-
+    let note = JSON.stringify(req.body);
+    fs.appendFile('db/db.json', note, function(err) {
+        if(err) throw err;
+    })
+    return note;
 })
 
 
