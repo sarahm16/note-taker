@@ -36,11 +36,6 @@ app.get('/notes', function(req, res) {
 app.get('/api/notes', function(req, res) {
     console.log(notes);
     res.json(notes);
-
-    // fs.readFile('db/db.json',  'utf8', function(err, data) {
-    //     data = JSON.parse(data);
-    //     res.json({ data });
-    // })
 })
 
 //receives new note
@@ -59,6 +54,9 @@ app.post('/api/notes', function(req, res) {
 app.delete('/api/notes/:id', function(req, res) {
     notes.splice(req.params.id, 1);
     res.json(notes);
+    fs.writeFile('db/db.json', JSON.stringify(notes), function(err) {
+        if(err) throw err;
+    })
 })
 
 //port that server will be listening on
