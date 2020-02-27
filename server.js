@@ -50,7 +50,7 @@ app.post('/api/notes', function(req, res) {
     res.json(note);
 })
 
-//find note by id and delete
+//find note by id and delete, write updated db.json
 app.delete('/api/notes/:id', function(req, res) {
     notes.splice(req.params.id, 1);
     res.json(notes);
