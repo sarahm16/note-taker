@@ -1,13 +1,12 @@
 let bodyParser = require('body-parser');
 let express = require("express");
 let path = require("path");
-let fs = require('fs');
 let notes = require('./db/note.js');
 
 //express app
 let app = express();
 
-//define port
+//define which port will be used
 let PORT = process.env.PORT || 3000;
 
 //middleware
@@ -30,23 +29,19 @@ app.get('/notes', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/notes.html'))
 })
 
-//*********** API ROUTES ***************************************************
+//*********** API ROUTES ****************************************************
 
-//reads db.json, returns notes
+//get response, returns notes array to client in json format
 app.get('/api/notes', function(req, res) {
-    console.log(notes);
     res.json(notes);
 })
 
-//receives new note
+//receives new note, add to notes array, return note in json format to client
 app.post('/api/notes', function(req, res) {
-    n += 1;
+    n += 1; //increment id
     let note = req.body;
     note.id = n;
     notes.push(note);
-    fs.writeFile('db/db.json', JSON.stringify(notes), function(err) {
-        if(err) throw err;
-    })
     res.json(note);
 })
 
@@ -54,9 +49,6 @@ app.post('/api/notes', function(req, res) {
 app.delete('/api/notes/:id', function(req, res) {
     notes.splice(req.params.id, 1);
     res.json(notes);
-    fs.writeFile('db/db.json', JSON.stringify(notes), function(err) {
-        if(err) throw err;
-    })
 })
 
 //port that server will be listening on
