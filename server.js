@@ -1,4 +1,3 @@
-let bodyParser = require('body-parser');
 let express = require("express");
 let path = require("path");
 let notes = require('./db/note.js');
