@@ -33,6 +33,7 @@ app.get('/notes', function(req, res) {
 //get response, returns notes array to client in json format
 app.get('/api/notes', function(req, res) {
     res.json(notes);
+    console.log(notes)
 })
 
 //receives new note, add to notes array, return note in json format to client
@@ -46,7 +47,13 @@ app.post('/api/notes', function(req, res) {
 
 //find note by id and delete, write updated db.json
 app.delete('/api/notes/:id', function(req, res) {
-    notes.splice(req.params.id, 1);
+    console.log(req.params.id);
+    for(let i=0; i<notes.length; i++) {
+        if(notes[i].id == req.params.id) {
+            console.log(notes[i].id)
+            notes.splice(i, 1);
+        }
+    }
     res.json(notes);
 })
 
